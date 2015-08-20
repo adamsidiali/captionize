@@ -1,3 +1,6 @@
+Template.editPhoto.rendered = function () {
+		$(".caption").fitText();		
+};
 
 Template.editPhoto.helpers({
 
