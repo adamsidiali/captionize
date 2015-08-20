@@ -1,3 +1,3 @@
-# Meteor Boilerplate
+# Caption
 
-An organized starter instance for an easily maintainable meteor project.
+Add text overlays to your photos.
