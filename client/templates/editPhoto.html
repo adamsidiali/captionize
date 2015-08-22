@@ -2,17 +2,35 @@
   <div class="photo-wrap">
 
     <ul class="photo-tools">
-      <li>Light</li>
+      {{#if hasCaption}}
+      <li class="title">Caption</li>
+      <li class="action change-caption"><i class="fa fa-pencil"></i> Edit</li>
+      {{/if}}
+      <li class="title">Theme</li>
+      <li class="action change-theme"><i class="fa fa-adjust"></i>{{#if isLight}}Light{{else}}Dark{{/if}}</li>
+      <li class="title">Alignment</li>
+      <li class="action change-horizontal">{{#if isLeft}}<i class="fa fa-long-arrow-left"></i>Left{{/if}}{{#if isCenter}}<i class="fa fa-arrows-h"></i>Center{{/if}}{{#if isRight}}<i class="fa fa-long-arrow-right"></i>Right{{/if}}</li>
+      <li class="action change-vertical">{{#if isTop}}<i class="fa fa-long-arrow-up"></i>Top{{/if}}{{#if isMiddle}}<i class="fa fa-arrows-v"></i>Middle{{/if}}{{#if isBottom}}<i class="fa fa-long-arrow-down"></i>Bottom{{/if}}</li>
     </ul>
 
     <div class="photo-inner">
       <div class="photo" style="background-image: url('{{url}}');"> </div>
-      <div class="overlay">
+      <div class="overlay {{#if isLight}}light{{/if}}" style="{{#if isTop}}justify-content: flex-start;{{/if}}{{#if isMiddle}}justify-content: center;{{/if}}{{#if isBottom}}justify-content: flex-end;{{/if}}">
         {{#if hasCaption}}
-          <h1 class="caption">{{caption}}</h1>
+
+            <div id="caption" class="{{#if isLight}}light{{/if}}" style="{{#if isLeft}}text-align: left;{{/if}}{{#if isCenter}}text-align: center;{{/if}}{{#if isRight}}text-align: right;{{/if}}">{{#each caption}}{{this}} {{/each}}</div>
+
         {{else}}
           <span class="add-text-button"><i class="fa fa-plus"></i> Add A Caption</span>
         {{/if}}
+
+        <span class="captionizer-icon {{#if isLight}}light{{/if}}">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-sticky-note fa-stack-2x"></i>
+            <i class="fa fa-bolt fa-stack-1x"></i>
+          </span>
+        </span>
+
       </div>
     </div>
 

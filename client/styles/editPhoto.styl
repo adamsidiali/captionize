@@ -1,13 +1,50 @@
 .photo-tools
   position absolute
   left 0
-  top 0
   bottom 0
-  background-color #fff
+  top 0
+  background-color transparent
   z-index 999
   list-style none
-  padding 20px
+  padding 10px
   margin 0
+  display flex
+  flex-flow column nowrap
+
+  li
+    display flex
+    flex-flow column nowrap
+    margin 5px
+    background-color #eee
+    border-radius 5px
+    padding 10px
+
+    *
+      margin auto
+
+    &.title
+      font-weight 900
+      text-transform uppercase
+      margin 0
+      margin-top 20px
+      padding 5px
+      background-color transparent
+
+    &.action
+      font-size 12px
+      max-width 100px
+      text-align center
+
+      &:hover
+        background-color #fff
+        cursor pointer
+
+      i
+        font-size 18px
+        margin 5px auto
+
+        &.hide
+          opacity 0
 
 
 .photo-wrap
@@ -54,9 +91,14 @@
       right 0
       bottom 0
       z-index 99
+      width 100%
       display flex
       flex-flow column nowrap
-      justify-content flex-end
+      justify-content center
+      overflow hidden
+      text-overflow ellipsis
+      padding 40px
+      box-sizing border-box
 
       &.light
         background-color rgba(255,255,255,0.6)
@@ -74,11 +116,33 @@
           background-color darken(#1bb23a, 15%)
           cursor pointer
 
-      .caption
-        margin 20px
+      #caption
+        flex 0 0 auto
+        margin 0px
         color #fff
         text-transform uppercase
-        max-width 75%
         font-weight 900
-        font-size 50px
-        line-height 50px
+        line-height 1
+        oveflow hidden
+        text-overflow ellipsis
+
+        &.light
+          color #000
+
+    .captionizer-icon
+      position absolute
+      bottom 0
+      right 0
+      margin 2px
+      transform scale(0.5)
+
+      .fa-sticky-note
+        color #aaa
+      .fa-bolt
+        color #333
+
+      &.light
+        .fa-sticky-note
+          color #888
+        .fa-bolt
+          color #ddd
