@@ -2,14 +2,21 @@
 
   <div class="upload-wrap">
 
-  	{{#each images}}
-			{{#unless this.isUploaded}}
-					{{> FS.UploadProgressBar}}
-			{{/unless}}
-		{{/each}}
+    <span class="captionizer-icon {{#if isLight}}light{{/if}}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-sticky-note fa-stack-2x"></i>
+        <i class="fa fa-bolt fa-stack-1x"></i>
+      </span>
+    </span>
+
+    <h1>Captionizer</h1>
+
+    <p>
+      Clean and simple captions for your photos.
+    </p>
 
     <div class="upload">
-      Upload A Photo
+      <i class="fa fa-upload"></i> Choose A Photo
       <input type="file" name="testImg" class="myFileInput">
     </div>
 

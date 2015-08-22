@@ -1,11 +1,13 @@
 Template.editPhoto.created = function () {
+		Session.set("photoCaption", false);
+		Session.set("photoToolsDisabled", false);
 		Session.setDefault("theme", "dark");
-		Session.setDefault("horizontal", "left");
-		Session.setDefault("vertical", "top");
+		Session.setDefault("horizontal", "center");
+		Session.setDefault("vertical", "middle");
 };
 
 Template.editPhoto.rendered = function () {
-		$("#caption").fitText(0.85);
+		$("#caption").fitText(0.8);
 };
 
 Template.editPhoto.helpers({
@@ -17,6 +19,9 @@ Template.editPhoto.helpers({
     } else {
       return false;
     }
+  },
+  "photoToolsDisabled": function () {
+    return Session.get("photoToolsDisabled");
   },
 
   "caption": function () {
@@ -84,7 +89,7 @@ Template.editPhoto.events({
     }, function(val){
       Session.set("photoCaption", val);
       setTimeout(function () {
-        $("#caption").fitText(0.85);
+        $("#caption").fitText(0.8);
       }, 500);
     });
   },
@@ -142,13 +147,30 @@ Template.editPhoto.events({
       if (val != "") {
         Session.set("photoCaption", val);
         setTimeout(function () {
-          $("#caption").fitText(0.85);
+          $("#caption").fitText(0.8);
         }, 500);
       } else {
         return false;
       }
 
     });
+  },
+
+  "focus #caption": function (e,t) {
+    Session.set("photoToolsDisabled", true);
+  },
+
+  "blur #caption": function (e,t) {
+    if ($(e.target).text() == "") {
+      alert("Caption cannot be blank!");
+      $(e.target).focus();
+    } else {
+      Session.set("photoToolsDisabled", false);
+    }
+  },
+
+  "click .back-to-upload": function () {
+    Router.go("/");
   }
 
 });

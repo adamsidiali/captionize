@@ -8,8 +8,8 @@ Meteor.methods({
 
 });
 
-Meteor.publish("images", function(){
-  return Images.find();
+Meteor.publish("images", function(img){
+  return Images.find({"_id":img});
 });
 
 Images.deny({
