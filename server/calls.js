@@ -2,7 +2,20 @@ Meteor.methods({
 
   "newSearch": function (results) {
 
-    return resuls;
+    return results;
+
+  },
+
+  "getShot": function (site) {
+    webshot(site, "/tmp/screencapture.png", {
+      "shotSize": { "width": 612, "height": 612}
+    }, function (err) {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log("snapshot taken");
+      }
+    });
 
   }
 

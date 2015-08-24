@@ -14,12 +14,12 @@
     <li class="action change-vertical">{{#if isTop}}<i class="fa fa-long-arrow-up"></i>Top{{/if}}{{#if isMiddle}}<i class="fa fa-arrows-v"></i>Middle{{/if}}{{#if isBottom}}<i class="fa fa-long-arrow-down"></i>Bottom{{/if}}</li>
     {{/if}}
   </ul>
-  
+
   <div class="photo-wrap">
 
     <h1 class="title captionizer-title">Captionizer <i class="fa fa-info-circle"></i></h1>
 
-    <div class="photo-inner">
+    <div id="photo-inner">
       <div class="photo" style="background-image: url('{{url}}');"> </div>
       <div class="overlay {{#if isLight}}light{{/if}}" style="{{#if isTop}}justify-content: flex-start;{{/if}}{{#if isMiddle}}justify-content: center;{{/if}}{{#if isBottom}}justify-content: flex-end;{{/if}}">
         {{#if hasCaption}}
@@ -30,19 +30,30 @@
           <span class="add-text-button"><i class="fa fa-plus"></i> Add A Caption</span>
         {{/if}}
 
+        {{#if snapshot}}
         <span class="captionizer-icon {{#if isLight}}light{{/if}}">
           <span class="fa-stack fa-lg">
             <i class="fa fa-sticky-note fa-stack-2x"></i>
             <i class="fa fa-bolt fa-stack-1x"></i>
           </span>
         </span>
+        {{/if}}
 
       </div>
     </div>
 
   </div>
 
+{{#if snapshot}}
+<div id="modal">
+
+</div>
+{{/if}}
+
+{{#if hasCaption}}
   <div class="save-pic">
     <i class="fa fa-download"></i>
   </div>
+{{/if}}
+
 </template>

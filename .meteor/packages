@@ -20,3 +20,7 @@ cfs:ui
 cfs:filesystem
 kevohagan:sweetalert
 frabrunelle:fittext
+bryanmorgan:webshot
+cfs:graphicsmagick
+new3rs:html2canvas
+chrismbeckett:toastr

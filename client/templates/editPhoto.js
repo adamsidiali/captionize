@@ -4,10 +4,11 @@ Template.editPhoto.created = function () {
 		Session.setDefault("theme", "dark");
 		Session.setDefault("horizontal", "center");
 		Session.setDefault("vertical", "middle");
+		Session.set("snapshot", false);
 };
 
 Template.editPhoto.rendered = function () {
-		$("#caption").fitText(0.8);
+		$("#caption").fitText();
 };
 
 Template.editPhoto.helpers({
@@ -20,6 +21,10 @@ Template.editPhoto.helpers({
       return false;
     }
   },
+  "snapshot": function () {
+    return Session.get("snapshot");
+  },
+
   "photoToolsDisabled": function () {
     return Session.get("photoToolsDisabled");
   },
@@ -89,7 +94,7 @@ Template.editPhoto.events({
     }, function(val){
       Session.set("photoCaption", val);
       setTimeout(function () {
-        $("#caption").fitText(0.8);
+        $("#caption").fitText();
       }, 500);
     });
   },
@@ -147,7 +152,7 @@ Template.editPhoto.events({
       if (val != "") {
         Session.set("photoCaption", val);
         setTimeout(function () {
-          $("#caption").fitText(0.8);
+          $("#caption").fitText();
         }, 500);
       } else {
         return false;
@@ -171,6 +176,26 @@ Template.editPhoto.events({
 
   "click .back-to-upload": function () {
     Router.go("/");
+  },
+
+  "click .save-pic": function (e,t) {
+    $("body *").hide();
+    $(".photo-wrap").show();
+    $(".photo-wrap").addClass("snapped");
+    $("#photo-inner").addClass("snapped");
+    $(".captionizer-icon").addClass("snapped");
+    $(".photo-wrap *").show();
+    $(".captionizer-title").hide();
+    $("#caption").fitText();
+    Session.set("snapshot", true);
+
+    html2canvas(document.getElementById("photo-inner"), {
+      onrendered: function(canvas) {
+        document.getElementById("modal").appendChild(canvas);
+      }
+    });
+
+
   }
 
 });

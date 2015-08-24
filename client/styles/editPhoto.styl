@@ -167,6 +167,13 @@
   overflow-x hidden
   overflow-y auto
 
+  &.snapped
+    width 612px
+    height 612px
+    padding-left 0
+    display block
+    background-color transparent
+
   @media (max-width: 600px)
     padding-left 0
     margin-top 80px
@@ -181,7 +188,7 @@
     bottom 0
     z-index 1
 
-  .photo-inner
+  #photo-inner
     box-shadow 2px 4px 6px rgba(0,0,0,0.2)
     flex 0 0 auto
     width 50vw
@@ -190,12 +197,25 @@
     margin 10vw
     position relative
 
+    &.snapped
+      width 612px
+      height 612px
+      margin 0
+      box-shadow none
+      position relative
+
     @media (max-width: 600px)
       width 80vw
       height 80vw
 
+      &.snapped
+        width 612px
+        height 612px
+        margin 0
+        box-shadow none
+
     .overlay
-      background-color rgba(0,0,0,0.6)
+      background-color rgba(0,0,0,0.5)
       position absolute
       top 0
       left 0
@@ -212,7 +232,7 @@
       box-sizing border-box
 
       &.light
-        background-color rgba(255,255,255,0.7)
+        background-color rgba(255,255,255,0.5)
 
       .add-text-button
         background-color #1bb23a
@@ -245,19 +265,39 @@
       position absolute
       bottom 0
       right 0
-      margin 2px
-      transform scale(0.5)
+      margin 0px
+      transform scale(0.3)
+
+      &.snapped
+        position fixed
+        top 570px
+        left 570px
+        margin 0
+        box-shadow none
+        transform scale(0.5)
+        bottom auto
+        right auto
 
       .fa-sticky-note
-        color #1bb23a
+        color #888
       .fa-bolt
         color #333
 
       &.light
         .fa-sticky-note
-          color #1bb23a
+          color #aaa
         .fa-bolt
           color #ddd
+
+#modal
+  position fixed
+  top 0px
+  left 0px
+  right 0px
+  bottom 0px
+  background-color #fff
+  z-index 999999999999
+
 
 
 .save-pic
