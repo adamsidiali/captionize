@@ -1,21 +1,21 @@
 <template name="editPhoto">
 
+{{#if done}}
+
   <ul class="photo-tools {{#if photoToolsDisabled}}disabled{{/if}}">
     <li class="title back-to-upload"><i class="fa fa-long-arrow-left"></i> Back</li>
     {{#if hasCaption}}
     <li class="title">Caption</li>
     <li class="action change-caption"><i class="fa fa-pencil"></i> Edit</li>
-    {{/if}}
     <li class="title">Theme</li>
     <li class="action change-theme"><i class="fa fa-adjust"></i>{{#if isLight}}Light{{else}}Dark{{/if}}</li>
-    {{#if hasCaption}}
     <li class="title">Alignment</li>
     <li class="action change-horizontal">{{#if isLeft}}<i class="fa fa-long-arrow-left"></i>Left{{/if}}{{#if isCenter}}<i class="fa fa-arrows-h"></i>Center{{/if}}{{#if isRight}}<i class="fa fa-long-arrow-right"></i>Right{{/if}}</li>
     <li class="action change-vertical">{{#if isTop}}<i class="fa fa-long-arrow-up"></i>Top{{/if}}{{#if isMiddle}}<i class="fa fa-arrows-v"></i>Middle{{/if}}{{#if isBottom}}<i class="fa fa-long-arrow-down"></i>Bottom{{/if}}</li>
     {{/if}}
   </ul>
 
-  <div class="photo-wrap">
+  <div class="photo-wrap {{#if photoToolsDisabled}}enabled{{/if}}">
 
     <h1 class="title captionizer-title">Captionizer <i class="fa fa-info-circle"></i></h1>
 
@@ -39,6 +39,18 @@
 
   </div>
 
+  <div class="finalizing">
+    <div class="loading">
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+
+      <span>Finishing</span>
+    </div>
+  </div>
+
 {{#if snapshot}}
 <div id="modal">
 
@@ -49,6 +61,11 @@
   <div class="save-pic">
     <i class="fa fa-check"></i>
   </div>
+{{/if}}
+
+
+
+
 {{/if}}
 
 </template>

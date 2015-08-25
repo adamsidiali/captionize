@@ -19,7 +19,10 @@ Template.home.events({
           console.log(err);
         } else {
           console.log("Inserting", fileObj);
-          Router.go("/edit/"+fileObj._id);
+          if (fileObj.isUploaded) {
+            Router.go("/edit/"+fileObj._id);
+
+          }
         }
       }
     }),

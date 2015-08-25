@@ -5,6 +5,7 @@ Template.editPhoto.created = function () {
 		Session.setDefault("horizontal", "center");
 		Session.setDefault("vertical", "middle");
 		Session.set("snapshot", false);
+		console.log(this.data.isUploaded());
 };
 
 Template.editPhoto.rendered = function () {
@@ -29,6 +30,12 @@ Template.editPhoto.rendered = function () {
 };
 
 Template.editPhoto.helpers({
+
+	"done": function () {
+		if (this.hasStored("images")) {
+			return true;
+		}
+	},
 
   "hasCaption": function () {
     var caption = Session.get("photoCaption");
@@ -204,34 +211,42 @@ Template.editPhoto.events({
   },
 
   "click .save-pic": function (e,t) {
-    $("body *").hide();
-    $(".photo-wrap").show();
-    $(".photo-wrap").addClass("snapped");
-    $(".photo").addClass("snapped");
-    $("#photo-inner").addClass("snapped");
-    $(".captionizer-icon").addClass("snapped");
-    $(".photo-wrap *").show();
-    $(".captionizer-title").hide();
-    $("#caption").fitText();
-    Session.set("snapshot", true);
 
-    var img;
+		async.series([
+			function (call) {
+				$(".finalizing").show();
+				Session.set("snapshot", true);
+				console.log("step 1");
+				return call(null);
+			},
+			function (call) {
+				console.log("step 2");
+				$(".photo-wrap").addClass("snapped");
+				$(".photo").addClass("snapped");
+				$("#photo-inner").addClass("snapped");
+				$(".captionizer-icon").addClass("snapped");
+				$("#caption").fitText();
+				return call(null);
+			}], function (call) {
+				console.log("step 3");
+		    html2canvas(document.getElementById("photo-inner"), {
+		      onrendered: function(canvas) {
+		        document.getElementById("modal").appendChild(canvas);
+		        var img = canvas.toDataURL("image/png");
+		        console.log(img);
 
-    html2canvas(document.getElementById("photo-inner"), {
-      onrendered: function(canvas) {
-        document.getElementById("modal").appendChild(canvas);
-        img = canvas.toDataURL("image/png");
-        console.log(img);
+		        Images.insert(img, function (err, fileObj) {
+		          console.log("saving " + fileObj._id);
+		        	Router.go("/photo/"+ fileObj._id);
+		        });
 
-        Images.insert(img, function (err, fileObj) {
-          console.log("saving " + fileObj._id);
-        	Router.go("/photo/"+ fileObj._id);
-        });
+		      },
+					width: 612,
+		  		height: 612
+		    });
 
-      },
-			width: 612,
-  		height: 612
-    });
+			});
+
 
   }
 
