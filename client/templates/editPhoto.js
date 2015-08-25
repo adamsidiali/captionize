@@ -1,5 +1,5 @@
 Template.editPhoto.created = function () {
-		Session.set("photoCaption", false);
+		Session.setDefault("photoCaption", false);
 		Session.set("photoToolsDisabled", false);
 		Session.setDefault("theme", "dark");
 		Session.setDefault("horizontal", "center");
@@ -9,6 +9,23 @@ Template.editPhoto.created = function () {
 
 Template.editPhoto.rendered = function () {
 		$("#caption").fitText();
+		toastr.options = {
+			"closeButton": false,
+			"debug": false,
+			"newestOnTop": false,
+			"progressBar": false,
+			"positionClass": "toast-bottom-left",
+			"preventDuplicates": false,
+			"onclick": null,
+			"showDuration": "300",
+			"hideDuration": "1000",
+			"timeOut": "5000",
+			"extendedTimeOut": "1000",
+			"showEasing": "swing",
+			"hideEasing": "linear",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
 };
 
 Template.editPhoto.helpers({
@@ -84,6 +101,7 @@ Template.editPhoto.helpers({
 Template.editPhoto.events({
 
   "click .add-text-button": function (e,t) {
+		toastr.remove();
     swal({
       title: "Add A Caption",
       text: 'Write a caption below to add to your photo.',
@@ -92,10 +110,17 @@ Template.editPhoto.events({
       closeOnConfirm: true,
       animation: "slide-from-top"
     }, function(val){
-      Session.set("photoCaption", val);
-      setTimeout(function () {
-        $("#caption").fitText();
-      }, 500);
+
+			if (val == "") {
+				return false;
+			} else {
+				Session.set("photoCaption", val);
+	      setTimeout(function () {
+	        $("#caption").fitText();
+	      }, 500);
+				toastr["info"]("Quickly adjust your caption by clicking on the text");
+			}
+
     });
   },
 
@@ -182,6 +207,7 @@ Template.editPhoto.events({
     $("body *").hide();
     $(".photo-wrap").show();
     $(".photo-wrap").addClass("snapped");
+    $(".photo").addClass("snapped");
     $("#photo-inner").addClass("snapped");
     $(".captionizer-icon").addClass("snapped");
     $(".photo-wrap *").show();
@@ -189,12 +215,23 @@ Template.editPhoto.events({
     $("#caption").fitText();
     Session.set("snapshot", true);
 
+    var img;
+
     html2canvas(document.getElementById("photo-inner"), {
       onrendered: function(canvas) {
         document.getElementById("modal").appendChild(canvas);
-      }
-    });
+        img = canvas.toDataURL("image/png");
+        console.log(img);
 
+        Images.insert(img, function (err, fileObj) {
+          console.log("saving " + fileObj._id);
+        	Router.go("/photo/"+ fileObj._id);
+        });
+
+      },
+			width: 612,
+  		height: 612
+    });
 
   }
 

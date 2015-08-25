@@ -1,0 +1,109 @@
+.final
+  padding-top 0
+
+  .back-to-editor
+    background-color #ededed
+    padding 10px
+    color #555
+
+    &:hover
+      cursor pointer
+      transition 150ms ease-in
+
+      i
+        padding 0 5px
+        transform scale(1.5)
+
+    i
+      margin-right 5px
+      transition 150ms ease-in
+
+  h1
+    padding 20px
+    margin-bottom 40px
+    color #1bb23a
+    text-transform capitalize
+    text-align center
+    font-family "Roboto"
+    font-weight 300
+    font-size 16px
+
+    span
+      color #000
+      font-size 30px
+      display block
+      line-height 1
+      text-transform uppercase
+      font-family "Oswald"
+      font-weight 700
+      margin 5px 0
+
+  div
+    width 800px
+    max-width 100%
+    margin 0 auto
+    display flex
+    flex-flow row nowrap
+    align-items flex-start
+
+    @media (max-width: 600px)
+      flex-flow column nowrap
+      align-items stretch
+
+    img
+      flex 0 0 auto
+      height 50%
+      width 50%
+      max-width 100%
+      margin 20px auto
+
+      @media (max-width: 600px)
+        width 100%
+        height 100%
+        margin-bottom 0
+
+    ul
+      list-style none
+      display flex
+      flex-flow column nowrap
+      justify-content center
+      margin 0 auto
+      padding 0
+      flex 0 0 auto
+      width 50%
+      max-width 100%
+      margin-top 20px
+
+      @media (max-width: 600px)
+        width 100%
+        margin-top 0
+
+      li
+        flex 0 0 auto
+        text-align center
+        margin 0
+        padding 20px
+        display flex
+        flex-flow column nowrap
+        justify-content center
+        background-color #eee
+        font-size 0.9em
+
+        &:hover
+          cursor pointer
+          background-color #ddd
+
+        i
+          display block
+
+        &.download
+          font-size 1.3em
+          background-color #1bb23a
+          color #fff
+
+          a
+            text-decoration none
+            color #fff
+
+          &:hover
+            background-color darken(#1bb23a, 15%)

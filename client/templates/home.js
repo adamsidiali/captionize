@@ -18,7 +18,7 @@ Template.home.events({
         if (err) {
           console.log(err);
         } else {
-          console.log("Inserted", fileObj);
+          console.log("Inserting", fileObj);
           Router.go("/edit/"+fileObj._id);
         }
       }

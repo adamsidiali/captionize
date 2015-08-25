@@ -1,7 +1,7 @@
 <template name="editPhoto">
 
   <ul class="photo-tools {{#if photoToolsDisabled}}disabled{{/if}}">
-    <li class="title back-to-upload"><i class="fa fa-long-arrow-left"></i> Choose another photo</li>
+    <li class="title back-to-upload"><i class="fa fa-long-arrow-left"></i> Back</li>
     {{#if hasCaption}}
     <li class="title">Caption</li>
     <li class="action change-caption"><i class="fa fa-pencil"></i> Edit</li>
@@ -27,17 +27,12 @@
           <div contenteditable id="caption" class="{{#if isLight}}light{{/if}}" style="{{#if isLeft}}text-align: left;{{/if}}{{#if isCenter}}text-align: center;{{/if}}{{#if isRight}}text-align: right;{{/if}}">{{#each caption}}{{this}} {{/each}}</div>
 
         {{else}}
-          <span class="add-text-button"><i class="fa fa-plus"></i> Add A Caption</span>
+          <span class="add-text-button"><i class="fa fa-plus"></i> Add Caption</span>
         {{/if}}
 
-        {{#if snapshot}}
         <span class="captionizer-icon {{#if isLight}}light{{/if}}">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-sticky-note fa-stack-2x"></i>
-            <i class="fa fa-bolt fa-stack-1x"></i>
-          </span>
+            <i class="fa fa-bolt"></i>
         </span>
-        {{/if}}
 
       </div>
     </div>
@@ -52,7 +47,7 @@
 
 {{#if hasCaption}}
   <div class="save-pic">
-    <i class="fa fa-download"></i>
+    <i class="fa fa-check"></i>
   </div>
 {{/if}}
 

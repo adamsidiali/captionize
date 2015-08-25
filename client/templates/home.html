@@ -3,22 +3,25 @@
   <div class="upload-wrap">
 
     <span class="captionizer-icon {{#if isLight}}light{{/if}}">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-sticky-note fa-stack-2x"></i>
-        <i class="fa fa-bolt fa-stack-1x"></i>
-      </span>
+        <i class="fa fa-bolt"></i>
     </span>
 
     <h1>Captionizer</h1>
 
     <p>
-      The easiest way to add stunning text captions to your instagram photos.
+      The easiest way to add stunning text captions to your Instagram photos.
     </p>
+
+    {{#if isUploading}}
+      uploading...
+    {{else}}
 
     <div class="upload">
       <i class="fa fa-photo"></i> Choose Photo
       <input type="file" name="testImg" class="myFileInput">
     </div>
+
+    {{/if}}
 
 
   </div>

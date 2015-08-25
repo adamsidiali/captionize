@@ -115,12 +115,21 @@
       font-weight 400
       border-radius 0
       color #1bb23a
-      transition 150ms ease-in
+
+      @media (max-width: 600px)
+        display flex
+        flex-flow column nowrap
+        justify-content center
+        margin-top 0
+        padding-left 20px
+        font-size 12px
+
+        i
+          margin 5px auto
+          font-size 18px
 
       &:hover
         cursor pointer
-        padding-right 20px
-        transition 150ms ease-in
 
       i
         margin-right 5px
@@ -128,6 +137,7 @@
 
     &.action
       font-size 12px
+      margin 0 auto
       box-sizing border-box
       text-align center
       color #ddd
@@ -145,15 +155,12 @@
         &.hide
           opacity 0
 
-
-
 .photo-wrap
   background-size contain
   background-repeat no-repeat
   background-position center center
   position fixed
   top 0
-  bottom 0
   left 0
   right 0
   width 100vw
@@ -164,19 +171,23 @@
   flex-flow column nowrap
   justify-content flex-start
   background-color #ddd
-  overflow-x hidden
-  overflow-y auto
+  overflow scroll
 
   &.snapped
     width 612px
     height 612px
+    right auto
     padding-left 0
     display block
     background-color transparent
+    position relative
 
   @media (max-width: 600px)
     padding-left 0
-    margin-top 80px
+    padding-top 80px
+
+    &.snapped
+      padding-top 0
 
   .photo
     background-position center center
@@ -188,18 +199,29 @@
     bottom 0
     z-index 1
 
+    &.snapped
+      top 0
+      left 0
+      width 612px
+      height 612px
+      bottom auto
+      right auto
+
   #photo-inner
     box-shadow 2px 4px 6px rgba(0,0,0,0.2)
     flex 0 0 auto
     width 50vw
     height 50vw
     max-width 100%
-    margin 10vw
+    margin auto auto
     position relative
+    overflow visible
 
     &.snapped
       width 612px
       height 612px
+      max-width 612px
+      min-width 612px
       margin 0
       box-shadow none
       position relative
@@ -207,15 +229,18 @@
     @media (max-width: 600px)
       width 80vw
       height 80vw
+      margin 20px auto
 
       &.snapped
         width 612px
         height 612px
+        max-width 612px
+        min-width 612px
         margin 0
         box-shadow none
 
     .overlay
-      background-color rgba(0,0,0,0.5)
+      background-color rgba(0,0,0,0.6)
       position absolute
       top 0
       left 0
@@ -226,13 +251,13 @@
       display flex
       flex-flow column nowrap
       justify-content center
-      overflow hidden
+      overflow visible
       text-overflow ellipsis
       padding 40px
       box-sizing border-box
 
       &.light
-        background-color rgba(255,255,255,0.5)
+        background-color rgba(255,255,255,0.6)
 
       .add-text-button
         background-color #1bb23a
@@ -263,40 +288,38 @@
 
     .captionizer-icon
       position absolute
-      bottom 0
-      right 0
-      margin 0px
-      transform scale(0.3)
+      right 10px
+      bottom 5px
+      margin 0
+      transform scale(0.8)
 
       &.snapped
-        position fixed
-        top 570px
-        left 570px
+        position absolute
+        top 575px
+        left 585px
         margin 0
         box-shadow none
-        transform scale(0.5)
+        transform scale(1)
         bottom auto
         right auto
 
-      .fa-sticky-note
-        color #888
       .fa-bolt
-        color #333
+        color #aaa
 
       &.light
-        .fa-sticky-note
-          color #aaa
         .fa-bolt
-          color #ddd
+          color #555
 
 #modal
   position fixed
   top 0px
   left 0px
-  right 0px
-  bottom 0px
-  background-color #fff
+  width 612px
+  height 612px
+  background-color transparent
   z-index 999999999999
+  overflow scroll
+  pointer-events none
 
 
 
@@ -305,15 +328,26 @@
   bottom 20px
   right 20px
   z-index 99999
-  width 80px
-  height 80px
-  border-radius 80px
+  width 70px
+  height 70px
+  border-radius 70px
   background-color #1bb23a
   display flex
   flex-flow column nowrap
   box-shadow 2px 4px 6px rgba(0,0,0,0.25)
+  transition 150ms ease-in
 
   i
     margin auto
     font-size 30px
     color #fff
+
+  &:hover
+    width 80px
+    height 80px
+    bottom 15px
+    right 15px
+    transition 150ms ease-in
+    cursor pointer
+    border-radius 80px
+    background-color darken(#1bb23a, 15%)

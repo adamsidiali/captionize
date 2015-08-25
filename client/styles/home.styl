@@ -9,28 +9,27 @@
   display flex
   flex-flow column nowrap
   background-color #fff
-  justify-content center
+  justify-content flex-start
+  overflow-x hidden
+  overflow-y auto
+  padding 0px
+  padding-top 100px
+  box-sizing border-box
 
   .captionizer-icon
     margin 0 auto
-    transform scale(1.5)
+    transform scale(3)
 
-    .fa-sticky-note
-      color #1bb23a
     .fa-bolt
       color #111
-
-    &.light
-      .fa-sticky-note
-        color #1bb23a
-      .fa-bolt
-        color #ddd
 
 
   h1
     text-transform uppercase
-    margin 0px auto
+    margin 10px auto
     margin-top 20px
+    padding 20px
+    box-sizing border-box
 
   p
     width 400px
@@ -38,7 +37,8 @@
     max-width 100%
     margin 0px auto
     margin-bottom 20px
-    padding 0px
+    padding 0px 20px
+    box-sizing border-box
     font-weight 300
     font-size 20px
     font-family "Roboto"
