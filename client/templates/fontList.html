@@ -1,0 +1,17 @@
+<template name="fontList">
+
+  <div class="font-list-modal">
+
+      <h1>Choose A Font</h1>
+
+      <span><i class="fa fa-close"></i></span>
+
+      <ul>
+        {{#each fonts}}
+        <li class="font-option" style="font-family: {{name}} !important; font-weight: {{optimalWeight}} !important; text-transform: {{optimalTransform}};">{{name}}</li>
+        {{/each}}
+      </ul>
+
+  </div>
+
+</template>

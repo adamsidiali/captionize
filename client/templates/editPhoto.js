@@ -2,10 +2,12 @@ Template.editPhoto.created = function () {
 		Session.setDefault("photoCaption", false);
 		Session.set("photoToolsDisabled", false);
 		Session.setDefault("theme", "dark");
+		Session.setDefault("fontTransform", "uppercase");
+		Session.setDefault("fontWeight", 700);
 		Session.setDefault("horizontal", "center");
 		Session.setDefault("vertical", "middle");
 		Session.set("snapshot", false);
-		console.log(this.data.isUploaded());
+		Session.setDefault("fontOption", "Oswald");
 };
 
 Template.editPhoto.rendered = function () {
@@ -32,9 +34,23 @@ Template.editPhoto.rendered = function () {
 Template.editPhoto.helpers({
 
 	"done": function () {
+
 		if (this.hasStored("images")) {
 			return true;
 		}
+
+	},
+
+	"fontOption": function () {
+		return Session.get("fontOption");
+	},
+
+	"fontTransform": function () {
+		return Session.get("fontTransform");
+	},
+
+	"fontWeight": function () {
+		return Session.get("fontWeight");
 	},
 
   "hasCaption": function () {
@@ -54,16 +70,23 @@ Template.editPhoto.helpers({
   },
 
   "caption": function () {
-
-    var c = Session.get("photoCaption");
-
-    var newC = c.split(" ");
-
-    return newC;
+    return Session.get("photoCaption");
   },
 
   "isLight": function () {
     if (Session.get("theme") == "light") {
+      return true;
+    }
+  },
+
+	"isDark": function () {
+    if (Session.get("theme") == "dark") {
+      return true;
+    }
+  },
+
+	"isThemeNone": function () {
+    if (Session.get("theme") == "none") {
       return true;
     }
   },
@@ -101,7 +124,32 @@ Template.editPhoto.helpers({
     if (Session.get("vertical") == "bottom") {
       return true;
     }
-  }
+  },
+
+	"isLower": function () {
+		if (Session.get("fontTransform") == "lowercase") {
+      return true;
+    }
+	},
+	"isCaps": function () {
+		if (Session.get("fontTransform") == "capitalize") {
+      return true;
+    }
+	},
+	"isUpper": function () {
+		if (Session.get("fontTransform") == "uppercase") {
+      return true;
+    }
+	},
+	"isTransNone": function () {
+		if (Session.get("fontTransform") == "none") {
+      return true;
+    }
+	},
+
+	"showFontList": function () {
+		return Session.get("showFontList");
+	}
 
 });
 
@@ -138,8 +186,10 @@ Template.editPhoto.events({
     if (theme == "dark") {
       Session.set("theme", "light");
     } else if (theme == "light") {
-      Session.set("theme", "dark");
-    }
+      Session.set("theme", "none");
+    } else if (theme == "none") {
+			Session.set("theme", "dark");
+		}
 
   },
 
@@ -206,6 +256,16 @@ Template.editPhoto.events({
     }
   },
 
+	"keypress #caption": function (e,t) {
+		if (e.keyCode === 13) {
+      // insert 2 br tags (if only one br tag is inserted the cursor won't go to the next line)
+      document.execCommand('insertHTML', false, '<br><br>');
+      // prevent the default behaviour of return key pressed
+      return false;
+    }
+	},
+
+
   "click .back-to-upload": function () {
     Router.go("/");
   },
@@ -248,6 +308,27 @@ Template.editPhoto.events({
 			});
 
 
-  }
+  },
+
+	"click .change-font": function (e,t) {
+
+		Session.set("showFontList", true);
+
+	},
+
+	"click .change-caps": function (e,t) {
+		var transform = Session.get("fontTransform");
+
+    if (transform == "uppercase") {
+      Session.set("fontTransform", "none");
+    } else if (transform == "lowercase") {
+      Session.set("fontTransform", "capitalize");
+    } else if (transform == "capitalize") {
+      Session.set("fontTransform", "uppercase");
+    } else if (transform == "none") {
+      Session.set("fontTransform", "lowercase");
+    }
+
+	}
 
 });

@@ -1,12 +1,16 @@
 <template name="editPhoto">
 
+{{#if done}}
+
   <ul class="photo-tools {{#if photoToolsDisabled}}disabled{{/if}}">
     <li class="title back-to-upload"><i class="fa fa-long-arrow-left"></i> Back</li>
     {{#if hasCaption}}
     <li class="title">Caption</li>
     <li class="action change-caption"><i class="fa fa-pencil"></i> Edit</li>
+    <li class="action change-font"><i class="fa fa-font"></i> Font</li>
+    <li class="action change-caps">{{#if isLower}}<i>aa</i>Lowercase{{/if}}{{#if isCaps}}<i>Aa</i>Capitalize{{/if}}{{#if isUpper}}<i>AA</i>Uppercase{{/if}}{{#if isTransNone}}<i class="fa fa-minus-circle"></i>None{{/if}}</li>
     <li class="title">Theme</li>
-    <li class="action change-theme"><i class="fa fa-adjust"></i>{{#if isLight}}Light{{else}}Dark{{/if}}</li>
+    <li class="action change-theme">{{#if isLight}}<i class="fa fa-adjust"></i>Light{{/if}}{{#if isDark}}<i class="fa fa-adjust fa-rotate-180"></i>Dark{{/if}}{{#if isThemeNone}}<i class="fa fa-minus-circle"></i>None{{/if}}</li>
     <li class="title">Alignment</li>
     <li class="action change-horizontal">{{#if isLeft}}<i class="fa fa-long-arrow-left"></i>Left{{/if}}{{#if isCenter}}<i class="fa fa-arrows-h"></i>Center{{/if}}{{#if isRight}}<i class="fa fa-long-arrow-right"></i>Right{{/if}}</li>
     <li class="action change-vertical">{{#if isTop}}<i class="fa fa-long-arrow-up"></i>Top{{/if}}{{#if isMiddle}}<i class="fa fa-arrows-v"></i>Middle{{/if}}{{#if isBottom}}<i class="fa fa-long-arrow-down"></i>Bottom{{/if}}</li>
@@ -18,17 +22,17 @@
     <h1 class="title captionizer-title">Captionizer <i class="fa fa-info-circle"></i></h1>
 
     <div id="photo-inner">
-      <div class="photo" style="background-image: url('{{url}}');"> </div>
-      <div class="overlay {{#if isLight}}light{{/if}}" style="{{#if isTop}}justify-content: flex-start;{{/if}}{{#if isMiddle}}justify-content: center;{{/if}}{{#if isBottom}}justify-content: flex-end;{{/if}}">
+      <div class="photo" style="background-image: url('{{this.url}}');"> </div>
+      <div class="overlay {{#if isLight}}light{{/if}}{{#if isThemeNone}}no-bg{{/if}}" style="{{#if isTop}}justify-content: flex-start;{{/if}}{{#if isMiddle}}justify-content: center;{{/if}}{{#if isBottom}}justify-content: flex-end;{{/if}}">
         {{#if hasCaption}}
 
-          <div contenteditable id="caption" class="{{#if isLight}}light{{/if}}" style="{{#if isLeft}}text-align: left;{{/if}}{{#if isCenter}}text-align: center;{{/if}}{{#if isRight}}text-align: right;{{/if}}">{{#each caption}}{{this}} {{/each}}</div>
+          <div contenteditable id="caption" class="{{#if isLight}}light{{/if}}{{#if isThemeNone}}no-bg{{/if}}" style="{{#if isLeft}}text-align: left;{{/if}}{{#if isCenter}}text-align: center;{{/if}}{{#if isRight}}text-align: right;{{/if}} font-family: {{fontOption}} !important; text-transform: {{fontTransform}} !important; font-weight: {{fontWeight}} !important;">{{caption}}</div>
 
         {{else}}
           <span class="add-text-button"><i class="fa fa-plus"></i> Add Caption</span>
         {{/if}}
 
-        <span class="captionizer-icon {{#if isLight}}light{{/if}}">
+        <span class="captionizer-icon {{#if isLight}}light{{/if}}{{#if isThemeNone}}no-bg{{/if}}">
             <i class="fa fa-bolt"></i>
         </span>
 
@@ -55,11 +59,21 @@
 </div>
 {{/if}}
 
+{{#if showFontList}}
+  {{> fontList}}
+{{/if}}
+
+
 {{#if hasCaption}}
   <div class="save-pic">
-    <i class="fa fa-check"></i>
+    <i class="fa fa-download"></i>
   </div>
 {{/if}}
 
+{{else}}
+
+  {{>loading}}
+
+{{/if}}
 
 </template>

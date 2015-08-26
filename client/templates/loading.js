@@ -1,5 +1,5 @@
 Template.loading.created = function () {
-  Session.setDefault("loadingMessage", "uploading");
+  Session.setDefault("loadingMessage", "loading photo");
 }
 
 Template.loading.helpers({

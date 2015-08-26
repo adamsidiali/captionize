@@ -1,3 +1,7 @@
+Template.home.created = function () {
+  Session.set("photoCaption", false);
+}
+
 Template.home.helpers({
 
   'images': function () {
@@ -19,11 +23,12 @@ Template.home.events({
           console.log(err);
         } else {
           console.log("Inserting", fileObj);
-          if (fileObj.isUploaded) {
+
+
             Router.go("/edit/"+fileObj._id);
+
 
           }
         }
-      }
     }),
 });
