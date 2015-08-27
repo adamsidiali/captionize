@@ -3,7 +3,6 @@
 {{#if done}}
 
   <ul class="photo-tools {{#if photoToolsDisabled}}disabled{{/if}}">
-    <li class="title back-to-upload"><i class="fa fa-long-arrow-left"></i> Back</li>
     {{#if hasCaption}}
     <li class="title">Caption</li>
     <li class="action change-caption"><i class="fa fa-pencil"></i> Edit</li>
@@ -16,6 +15,11 @@
     <li class="action change-vertical">{{#if isTop}}<i class="fa fa-long-arrow-up"></i>Top{{/if}}{{#if isMiddle}}<i class="fa fa-arrows-v"></i>Middle{{/if}}{{#if isBottom}}<i class="fa fa-long-arrow-down"></i>Bottom{{/if}}</li>
     {{/if}}
   </ul>
+
+  <div class="mobile-nav">
+    <span class="back-upload"><i class="fa fa-long-arrow-left"></i> Back</span>
+    <span class="finalize-pic"><i class="fa fa-check"></i>Done</span>
+  </div>
 
   <div class="photo-wrap {{#if photoToolsDisabled}}enabled{{/if}}">
 
@@ -63,12 +67,6 @@
   {{> fontList}}
 {{/if}}
 
-
-{{#if hasCaption}}
-  <div class="save-pic">
-    <i class="fa fa-download"></i>
-  </div>
-{{/if}}
 
 {{else}}
 

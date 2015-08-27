@@ -32,6 +32,8 @@
     list-style none
     display flex
     flex-flow row wrap
+    overflow-x hidden
+    overflow-y scroll
 
     li
       font-size 30px
@@ -47,3 +49,6 @@
         border-bottom 10px solid #1bb23a
         padding-bottom 30px
         cursor pointer
+
+      @media (max-width: 600px)
+        width 98%

@@ -259,18 +259,18 @@ Template.editPhoto.events({
 	"keypress #caption": function (e,t) {
 		if (e.keyCode === 13) {
       // insert 2 br tags (if only one br tag is inserted the cursor won't go to the next line)
-      document.execCommand('insertHTML', false, '<br><br>');
+      document.execCommand('insertHTML', false, '<br>');
       // prevent the default behaviour of return key pressed
       return false;
     }
 	},
 
 
-  "click .back-to-upload": function () {
+  "click .back-upload": function () {
     Router.go("/");
   },
 
-  "click .save-pic": function (e,t) {
+  "click .finalize-pic": function (e,t) {
 
 		async.series([
 			function (call) {

@@ -14,7 +14,6 @@
 
   h1
     padding 20px
-    margin-bottom 20px
     color #1bb23a
     text-transform capitalize
     text-align center
@@ -37,8 +36,8 @@
     max-width 100%
     margin 0 auto
     display flex
-    flex-flow row nowrap
-    align-items flex-start
+    flex-flow column nowrap
+    align-items stretch
 
     @media (max-width: 600px)
       flex-flow column nowrap
@@ -46,14 +45,11 @@
 
     img
       flex 0 0 auto
-      height 50%
-      width 50%
-      max-width 100%
+      height 120px
+      width 120px
       margin 20px auto
 
       @media (max-width: 600px)
-        width 100%
-        height 100%
         margin-bottom 40px
         margin-top 0px
 
@@ -65,21 +61,22 @@
       margin 0 auto
       padding 0
       flex 0 0 auto
-      width 50%
+      width 100%
       max-width 100%
-      margin-top 20px
+      margin 20px 0
+      margin-top 0
 
       @media (max-width: 600px)
         width 100%
 
-
       li
         flex 0 0 auto
         text-align center
-        margin 0
-        padding 20px
+        margin 5px auto
+        border-radius 100px
+        padding 20px 40px
         display flex
-        flex-flow column nowrap
+        flex-flow row nowrap
         justify-content center
         background-color #eee
         font-size 0.9em
@@ -89,7 +86,8 @@
           background-color #ddd
 
         i
-          display block
+          margin auto 0
+          margin-right 5px
 
         &.download
           font-size 1.3em
