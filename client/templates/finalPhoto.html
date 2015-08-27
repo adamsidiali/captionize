@@ -1,4 +1,6 @@
 <template name="finalPhoto">
+
+  {{#if done}}
   <div class="upload-wrap final">
     <span class="back-to-editor"><i class="fa fa-long-arrow-left"></i> Back To Editor</span>
     <h1>
@@ -20,4 +22,10 @@
     </div>
 
   </div>
+
+  {{else}}
+
+  {{>loading}}
+
+  {{/if}}
 </template>

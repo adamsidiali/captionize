@@ -9,3 +9,13 @@ Template.finalPhoto.events({
   }
 
 });
+
+Template.finalPhoto.helpers({
+  "done": function () {
+
+    if (this.hasStored("images")) {
+      return true;
+    }
+
+  }
+});
