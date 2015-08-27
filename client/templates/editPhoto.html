@@ -27,7 +27,7 @@
 
     <div id="photo-inner">
       <div class="photo" style="background-image: url('{{this.url}}');"> </div>
-      <div class="overlay {{#if hasCaption}}{{else}}add-cap{{/if}}{{#if isLight}}light{{/if}}{{#if isThemeNone}}no-bg{{/if}}" style="{{#if isTop}}justify-content: flex-start;{{/if}}{{#if isMiddle}}justify-content: center;{{/if}}{{#if isBottom}}justify-content: flex-end;{{/if}}">
+      <div class="overlay {{#if hasCaption}}{{else}}add-cap{{/if}} {{#if isLight}}light{{/if}}{{#if isThemeNone}}no-bg{{/if}}" style="{{#if isTop}}justify-content: flex-start;{{/if}}{{#if isMiddle}}justify-content: center;{{/if}}{{#if isBottom}}justify-content: flex-end;{{/if}}">
         {{#if hasCaption}}
 
           <div contenteditable id="caption" class="{{#if isLight}}light{{/if}}{{#if isThemeNone}}no-bg{{/if}}" style="{{#if isLeft}}text-align: left;{{/if}}{{#if isCenter}}text-align: center;{{/if}}{{#if isRight}}text-align: right;{{/if}} font-family: {{fontOption}} !important; text-transform: {{fontTransform}} !important; font-weight: {{fontWeight}} !important;">{{caption}}</div>
