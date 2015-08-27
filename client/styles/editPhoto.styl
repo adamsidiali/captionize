@@ -285,8 +285,6 @@
     flex 0 0 auto
     width 50vw
     height 50vw
-    max-width 80vh
-    max-height 80vh
     margin 20px auto
     position relative
     overflow visible
@@ -330,6 +328,12 @@
       padding 40px
       box-sizing border-box
 
+      &.add-cap:hover
+        cursor pointer
+
+        .add-text-button
+          background-color darken(#1bb23a, 15%)
+
       &.light
         background-color rgba(255,255,255,0.6)
 
@@ -344,10 +348,6 @@
         margin auto
         font-weight 400
         border-radius 100px
-
-        &:hover
-          background-color darken(#1bb23a, 15%)
-          cursor pointer
 
       #caption
         flex 0 0 auto

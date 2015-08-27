@@ -20,7 +20,7 @@ Template.home.events({
       },
       after: function (err, fileObj) {
         if (err) {
-          console.log(err);
+          alert("Oops, something went wrong. Please try again.");
         } else {
           console.log("Inserting", fileObj);
 

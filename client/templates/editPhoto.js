@@ -155,7 +155,7 @@ Template.editPhoto.helpers({
 
 Template.editPhoto.events({
 
-  "click .add-text-button": function (e,t) {
+  "click .add-cap": function (e,t) {
 		toastr.remove();
     swal({
       title: "Add A Caption",
@@ -297,7 +297,7 @@ Template.editPhoto.events({
 
 		        Images.insert(img, function (err, fileObj) {
 		          console.log("saving " + fileObj._id);
-		        	Router.go("/photo/"+ fileObj._id);
+		        	Router.go("/render/"+ fileObj._id);
 		        });
 
 		      },
