@@ -8,7 +8,7 @@ App.icons({
   'android_ldpi': 'public/icons/drawable-ldpi/Icon.png',
   'android_mdpi': 'public/icons/drawable-mdpi/Icon.png',
   'android_hdpi': 'public/icons/drawable-hdpi/Icon.png',
-  'android_xhdpi': 'public/icons/drawable-xxxhdpi/Icon.png'
+  'android_xhdpi': 'public/icons/drawable-xhdpi/Icon.png'
   //'android_xxhdpi': 'private/assets/drawable-xxhdpi/ic_launcher.png',
   //'android_xxxhdpi': 'private/assets/drawable-xxxhdpi/ic_launcher.png',
 });
